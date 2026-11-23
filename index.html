@@ -988,6 +988,7 @@ HTML
       document.getElementById("station-filter").value = "all";
       document.querySelectorAll(".filter-btn").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.filter === "all");
+        });
         renderShifts();
       });
 
