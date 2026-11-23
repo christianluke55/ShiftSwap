@@ -1,1 +1,1037 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShiftSwap — Retail & Floor Shift Coverage</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --primary: #0f3d68;
+      --primary-light: #1a5a96;
+      --accent: #d9534f;
+      --accent-hover: #c9302c;
+      --success: #1e7e4f;
+      --success-bg: #e7f6ee;
+      --warning: #b45309;
+      --warning-bg: #fef3c7;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #cbd5e1;
+      --radius: 10px;
+      --shadow: 0 2px 8px rgba(15, 61, 104, 0.08);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 1rem 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: #ffffff;
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .store-pill {
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    /* 30-Second Clarity Hero */
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: 1.65rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 780px;
+      margin-bottom: 1.25rem;
+      font-size: 0.98rem;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .workflow-step {
+      background: var(--bg);
+      border-left: 4px solid var(--primary);
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+    }
+
+    .workflow-step strong {
+      display: block;
+      color: var(--primary);
+      font-size: 0.92rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .workflow-step span {
+      font-size: 0.84rem;
+      color: var(--text);
+    }
+
+    /* Live Metrics Bar */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .metric-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .metric-value.open-color {
+      color: var(--warning);
+    }
+
+    .metric-value.success-color {
+      color: var(--success);
+    }
+
+    /* Two-Column Board + Post Shift */
+    .board-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 840px) {
+      .board-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .panel-subtitle {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    /* Form Controls */
+    .form-group {
+      margin-bottom: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      background: #ffffff;
+      color: var(--text);
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      outline: 2px solid var(--primary-light);
+      border-color: var(--primary-light);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 0.68rem 1rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-light);
+    }
+
+    .btn-claim {
+      background-color: var(--success);
+      color: #ffffff;
+      width: auto;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .btn-claim:hover {
+      background-color: #16633d;
+    }
+
+    .btn-unclaim {
+      background-color: #e2e8f0;
+      color: var(--text);
+      width: auto;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .btn-unclaim:hover {
+      background-color: #cbd5e1;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .filter-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.38rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .role-select {
+      width: auto;
+      min-width: 175px;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.84rem;
+    }
+
+    /* Shift Cards */
+    .shift-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .shift-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+      background: #ffffff;
+    }
+
+    .shift-card.covered {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .shift-info {
+      flex: 1 1 240px;
+    }
+
+    .shift-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .shift-station {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .badge-open {
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+
+    .badge-covered {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .badge-urgent {
+      background: #fee2e2;
+      color: var(--accent);
+    }
+
+    .shift-meta {
+      font-size: 0.86rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .shift-notes {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .shift-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 520px) {
+      .shift-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 0.65rem;
+      }
+    }
+
+    /* Inline Claim Box */
+    .claim-box {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .claim-box input {
+      width: 145px;
+      padding: 0.42rem 0.6rem;
+      font-size: 0.84rem;
+    }
+
+    /* Course Concept Simulator */
+    .sim-panel {
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .sim-header {
+      margin-bottom: 1.2rem;
+    }
+
+    .sim-header h2 {
+      font-size: 1.28rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+    }
+
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .sim-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slider-group {
+      margin-bottom: 1.15rem;
+    }
+
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .slider-val {
+      color: var(--primary);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .sim-outputs {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 1.15rem;
+      border: 1px solid var(--border);
+    }
+
+    .sim-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.92rem;
+    }
+
+    .sim-stat-row strong {
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      background: #cbd5e1;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--success);
+      width: 75%;
+      transition: width 0.25s ease, background-color 0.25s ease;
+    }
+
+    .sim-insight {
+      font-size: 0.85rem;
+      color: var(--text);
+      background: #ffffff;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border-left: 4px solid var(--success);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 1.25rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span>ShiftSwap</span>
+        <span class="brand-badge">Live Floor Board</span>
+      </div>
+      <div class="store-pill">Store #104 — SlapShot Outfitters (Hockey &amp; Sporting Goods)</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 30-Second Clarity Hero -->
+    <section class="hero" aria-label="Platform Overview">
+      <h1>Fill Open Retail Shifts in Minutes, Not Group-Chat Hours</h1>
+      <p>
+        ShiftSwap helps hourly floor staff and store managers at <strong>SlapShot Outfitters</strong> trade, drop, and claim shifts without messy text threads or overtime surprises.
+      </p>
+      <div class="workflow-grid">
+        <div class="workflow-step">
+          <strong>1. Post an Open Shift</strong>
+          <span>Staff post a shift they cannot make with station skill tags and shift time.</span>
+        </div>
+        <div class="workflow-step">
+          <strong>2. Coworkers Claim Instantly</strong>
+          <span>Eligible teammates browse open shifts and claim extra hours with one click.</span>
+        </div>
+        <div class="workflow-step">
+          <strong>3. Live Coverage Visibility</strong>
+          <span>Floor managers see real-time coverage rates and verified replacements immediately.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Metrics Bar -->
+    <section class="metrics-grid" aria-label="Live Shift Metrics">
+      <div class="metric-card">
+        <div class="metric-label">Open Shifts</div>
+        <div class="metric-value open-color" id="metric-open">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Covered Shifts</div>
+        <div class="metric-value success-color" id="metric-covered">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Store Coverage Rate</div>
+        <div class="metric-value" id="metric-rate">0%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Avg. Fill Speed</div>
+        <div class="metric-value" id="metric-speed">18m</div>
+      </div>
+    </section>
+
+    <!-- Interactive Shift Board -->
+    <section class="board-layout" aria-label="Interactive Shift Board">
+      <!-- Left: Post a Shift Form -->
+      <div class="panel">
+        <h2>Post an Open Shift</h2>
+        <p class="panel-subtitle">Add a shift to the live store board for teammate pickup.</p>
+        <form id="post-shift-form">
+          <div class="form-group">
+            <label for="staff-name">Your Name</label>
+            <input type="text" id="staff-name" placeholder="e.g., Jordan Vance" required />
+          </div>
+          <div class="form-group">
+            <label for="station-select">Floor Station / Role</label>
+            <select id="station-select">
+              <option value="Skate Sharpening Counter">Skate Sharpening Counter</option>
+              <option value="Stick & Protective Floor">Stick &amp; Protective Floor</option>
+              <option value="Cash & Returns Desk">Cash &amp; Returns Desk</option>
+              <option value="Jersey Customization">Jersey Customization</option>
+              <option value="Stockroom & Receiving">Stockroom &amp; Receiving</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="shift-time">Day &amp; Shift Window</label>
+            <input type="text" id="shift-time" placeholder="e.g., Sat, Nov 28 • 10:00 AM – 6:00 PM" required />
+          </div>
+          <div class="form-group">
+            <label for="shift-notes">Notes / Skill Requirement</label>
+            <input type="text" id="shift-notes" placeholder="e.g., Must know Sparx sharpener" />
+          </div>
+          <label class="checkbox-row">
+            <input type="checkbox" id="shift-urgent" />
+            <span>Mark as Urgent (starts within 24 hours)</span>
+          </label>
+          <button type="submit" class="btn btn-primary">+ Post Shift to Board</button>
+        </form>
+      </div>
+
+      <!-- Right: Live Shift Feed -->
+      <div class="panel">
+        <h2>Active Store Shift Board</h2>
+        <p class="panel-subtitle">Filter by status or floor station, or claim an open shift below.</p>
+
+        <div class="filter-bar">
+          <div class="filter-pills" role="group" aria-label="Filter shifts by status">
+            <button type="button" class="filter-btn active" data-filter="all">All Shifts</button>
+            <button type="button" class="filter-btn" data-filter="open">Open Only</button>
+            <button type="button" class="filter-btn" data-filter="covered">Covered Only</button>
+          </div>
+
+          <select id="station-filter" class="role-select" aria-label="Filter by station">
+            <option value="all">All Stations</option>
+            <option value="Skate Sharpening Counter">Skate Sharpening Counter</option>
+            <option value="Stick & Protective Floor">Stick &amp; Protective Floor</option>
+            <option value="Cash & Returns Desk">Cash &amp; Returns Desk</option>
+            <option value="Jersey Customization">Jersey Customization</option>
+            <option value="Stockroom & Receiving">Stockroom &amp; Receiving</option>
+          </select>
+        </div>
+
+        <div class="shift-list" id="shift-list"></div>
+      </div>
+    </section>
+
+    <!-- Course Concept Simulation: Network Density & Shift-Fill Simulator -->
+    <section class="sim-panel" aria-label="Network Density and Shift-Fill Simulator">
+      <div class="sim-header">
+        <h2>Network Density &amp; Shift-Fill Simulator</h2>
+        <p class="panel-subtitle">
+          Adjust active roster size and staff participation rate to see how same-side roster density drives faster shift fills and reduces manager scheduling overhead.
+        </p>
+      </div>
+
+      <div class="sim-grid">
+        <div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <label for="roster-slider">Active Store Roster Size</label>
+              <span class="slider-val"><span id="roster-val">24</span> staff</span>
+            </div>
+            <input type="range" id="roster-slider" min="6" max="50" value="24" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <label for="participation-slider">Weekly Staff App Participation</label>
+              <span class="slider-val"><span id="participation-val">75</span>%</span>
+            </div>
+            <input type="range" id="participation-slider" min="15" max="100" value="75" />
+          </div>
+        </div>
+
+        <div class="sim-outputs">
+          <div class="sim-stat-row">
+            <span>Projected Shift-Fill Probability:</span>
+            <strong id="sim-fill-rate">86%</strong>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="sim-progress"></div>
+          </div>
+          <div class="sim-stat-row">
+            <span>Estimated Time-to-Fill:</span>
+            <strong id="sim-time">22 mins</strong>
+          </div>
+          <div class="sim-stat-row">
+            <span>Manager Hours Saved / Week:</span>
+            <strong id="sim-hours">5.4 hrs</strong>
+          </div>
+          <div class="sim-insight" id="sim-insight">
+            Strong liquidity: With 18 active weekly users, open shifts reach critical mass quickly and managers avoid manual phone trees.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    ShiftSwap Workforce Scheduling &bull; Store #104 SlapShot Outfitters
+  </footer>
+
+  <script>
+    // Initial fictional store shift data
+    const shifts = [
+      {
+        id: 1,
+        postedBy: "Marcus Thorne",
+        station: "Skate Sharpening Counter",
+        time: "Thu, Nov 26 • 4:00 PM – 9:00 PM",
+        notes: "Evening rush before minor hockey tournament; sharpening certification needed.",
+        urgent: true,
+        status: "open",
+        claimedBy: ""
+      },
+      {
+        id: 2,
+        postedBy: "Chloe Lindqvist",
+        station: "Stick & Protective Floor",
+        time: "Fri, Nov 27 • 12:00 PM – 8:00 PM",
+        notes: "Curve & flex fitting on main floor.",
+        urgent: false,
+        status: "open",
+        claimedBy: ""
+      },
+      {
+        id: 3,
+        postedBy: "Devon Patel",
+        station: "Cash & Returns Desk",
+        time: "Sat, Nov 28 • 9:30 AM – 5:30 PM",
+        notes: "Weekend opening register shift.",
+        urgent: false,
+        status: "covered",
+        claimedBy: "Tessa Moreau"
+      },
+      {
+        id: 4,
+        postedBy: "Liam MacLeod",
+        station: "Jersey Customization",
+        time: "Sun, Nov 29 • 11:00 AM – 5:00 PM",
+        notes: "Heat-press team orders and nameplates.",
+        urgent: false,
+        status: "open",
+        claimedBy: ""
+      },
+      {
+        id: 5,
+        postedBy: "Samira Haddad",
+        station: "Stockroom & Receiving",
+        time: "Mon, Nov 30 • 8:00 AM – 2:00 PM",
+        notes: "Morning winter skate shipment intake.",
+        urgent: false,
+        status: "covered",
+        claimedBy: "Noah Kowalski"
+      }
+    ];
+
+    let currentStatusFilter = "all";
+    let currentStationFilter = "all";
+    let claimingShiftId = null;
+
+    const shiftListEl = document.getElementById("shift-list");
+    const metricOpenEl = document.getElementById("metric-open");
+    const metricCoveredEl = document.getElementById("metric-covered");
+    const metricRateEl = document.getElementById("metric-rate");
+    const metricSpeedEl = document.getElementById("metric-speed");
+
+    function updateMetrics() {
+      const total = shifts.length;
+      const covered = shifts.filter((s) => s.status === "covered").length;
+      const open = total - covered;
+      const rate = total === 0 ? 100 : Math.round((covered / total) * 100);
+      const avgSpeed = Math.max(9, 34 - covered * 4);
+
+      metricOpenEl.textContent = open;
+      metricCoveredEl.textContent = covered;
+      metricRateEl.textContent = rate + "%";
+      metricSpeedEl.textContent = avgSpeed + "m";
+    }
+
+    function renderShifts() {
+      const filtered = shifts.filter((shift) => {
+        const matchesStatus =
+          currentStatusFilter === "all" || shift.status === currentStatusFilter;
+        const matchesStation =
+          currentStationFilter === "all" || shift.station === currentStationFilter;
+        return matchesStatus && matchesStation;
+      });
+
+      if (filtered.length === 0) {
+        shiftListEl.innerHTML =
+          '<p style="color: var(--muted); font-size: 0.9rem; padding: 1rem 0;">No shifts match your current filter selection.</p>';
+        updateMetrics();
+        return;
+      }
+
+      shiftListEl.innerHTML = filtered
+        .map((shift) => {
+          const isCovered = shift.status === "covered";
+          const statusBadge = isCovered
+            ? '<span class="badge badge-covered">Covered</span>'
+            : '<span class="badge badge-open">Open</span>';
+          const urgentBadge =
+            !isCovered && shift.urgent
+              ? '<span class="badge badge-urgent">Urgent</span>'
+              : "";
+
+          let actionHtml = "";
+          if (isCovered) {
+            actionHtml = `
+              <span style="font-size: 0.84rem; font-weight: 700; color: var(--success);">
+                Covered by ${escapeHtml(shift.claimedBy)}
+              </span>
+              <button type="button" class="btn btn-unclaim" onclick="releaseShift(${shift.id})">
+                Release Shift
+              </button>
+            `;
+          } else if (claimingShiftId === shift.id) {
+            actionHtml = `
+              <div class="claim-box">
+                <input type="text" id="claim-input-${shift.id}" placeholder="Your full name" />
+                <button type="button" class="btn btn-claim" onclick="confirmClaim(${shift.id})">Confirm</button>
+                <button type="button" class="btn btn-unclaim" onclick="cancelClaim()">Cancel</button>
+              </div>
+            `;
+          } else {
+            actionHtml = `
+              <button type="button" class="btn btn-claim" onclick="startClaim(${shift.id})">
+                Claim Shift
+              </button>
+            `;
+          }
+
+          return `
+            <article class="shift-card ${isCovered ? "covered" : ""}">
+              <div class="shift-info">
+                <div class="shift-header">
+                  <span class="shift-station">${escapeHtml(shift.station)}</span>
+                  ${statusBadge}
+                  ${urgentBadge}
+                </div>
+                <div class="shift-meta">
+                  <strong>${escapeHtml(shift.time)}</strong> &bull; Posted by ${escapeHtml(shift.postedBy)}
+                </div>
+                <div class="shift-notes">${escapeHtml(shift.notes || "Standard floor coverage.")}</div>
+              </div>
+              <div class="shift-actions">
+                ${actionHtml}
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+
+      updateMetrics();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    // Claim & Release handlers
+    window.startClaim = function (id) {
+      claimingShiftId = id;
+      renderShifts();
+      const input = document.getElementById("claim-input-" + id);
+      if (input) input.focus();
+    };
+
+    window.cancelClaim = function () {
+      claimingShiftId = null;
+      renderShifts();
+    };
+
+    window.confirmClaim = function (id) {
+      const input = document.getElementById("claim-input-" + id);
+      const name = input ? input.value.trim() : "";
+      if (!name) {
+        alert("Please enter your name to claim this shift.");
+        return;
+      }
+      const target = shifts.find((s) => s.id === id);
+      if (target) {
+        target.status = "covered";
+        target.claimedBy = name;
+      }
+      claimingShiftId = null;
+      renderShifts();
+    };
+
+    window.releaseShift = function (id) {
+      const target = shifts.find((s) => s.id === id);
+      if (target) {
+        target.status = "open";
+        target.claimedBy = "";
+      }
+      renderShifts();
+    };
+
+    // Post new shift handler
+    document.getElementById("post-shift-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("staff-name").value.trim();
+      const station = document.getElementById("station-select").value;
+      const time = document.getElementById("shift-time").value.trim();
+      const notes = document.getElementById("shift-notes").value.trim();
+      const urgent = document.getElementById("shift-urgent").checked;
+
+      if (!name || !time) return;
+
+      shifts.unshift({
+        id: Date.now(),
+        postedBy: name,
+        station: station,
+        time: time,
+        notes: notes || "Standard floor shift.",
+        urgent: urgent,
+        status: "open",
+        claimedBy: ""
+      });
+
+      this.reset();
+      currentStatusFilter = "all";
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.filter === "all");
+      });
+      renderShifts();
+    });
+
+    // Status filter buttons
+    document.querySelectorAll(".filter-btn").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+        this.classList.add("active");
+        currentStatusFilter = this.dataset.filter;
+        renderShifts();
+      });
+    });
+
+    // Station filter dropdown
+    document.getElementById("station-filter").addEventListener("change", function () {
+      currentStationFilter = this.value;
+      renderShifts();
+    });
+
+    // Network Density & Shift-Fill Simulator logic
+    const rosterSlider = document.getElementById("roster-slider");
+    const participationSlider = document.getElementById("participation-slider");
+    const rosterValEl = document.getElementById("roster-val");
+    const participationValEl = document.getElementById("participation-val");
+    const simFillRateEl = document.getElementById("sim-fill-rate");
+    const simTimeEl = document.getElementById("sim-time");
+    const simHoursEl = document.getElementById("sim-hours");
+    const simProgressEl = document.getElementById("sim-progress");
+    const simInsightEl = document.getElementById("sim-insight");
+
+    function updateSimulator() {
+      const roster = Number(rosterSlider.value);
+      const participation = Number(participationSlider.value);
+      const activePool = Math.max(1, Math.round(roster * (participation / 100)));
+
+      rosterValEl.textContent = roster;
+      participationValEl.textContent = participation;
+
+      // Diminishing-returns liquidity curve based on active staff pool
+      const rawFill = 28 + Math.min(69, Math.round(Math.log2(activePool + 1) * 14.5));
+      const fillRate = Math.min(98, Math.max(25, rawFill));
+      const timeToFill = Math.max(8, Math.round(145 / Math.sqrt(activePool)));
+      const hoursSaved = ((fillRate / 100) * (roster * 0.26)).toFixed(1);
+
+      simFillRateEl.textContent = fillRate + "%";
+      simTimeEl.textContent = timeToFill + " mins";
+      simHoursEl.textContent = hoursSaved + " hrs";
+      simProgressEl.style.width = fillRate + "%";
+
+      if (fillRate >= 80) {
+        simProgressEl.style.backgroundColor = "var(--success)";
+        simInsightEl.style.borderLeftColor = "var(--success)";
+        simInsightEl.textContent = `Strong network liquidity: With ${activePool} active weekly staff, open shifts hit critical mass fast and managers avoid manual phone trees.`;
+      } else if (fillRate >= 55) {
+        simProgressEl.style.backgroundColor = "var(--warning)";
+        simInsightEl.style.borderLeftColor = "var(--warning)";
+        simInsightEl.textContent = `Moderate liquidity: ${activePool} active staff cover standard shifts, though specialized stations (like Skate Sharpening) may still need manager nudges.`;
+      } else {
+        simProgressEl.style.backgroundColor = "var(--accent)";
+        simInsightEl.style.borderLeftColor = "var(--accent)";
+        simInsightEl.textContent = `Cold-start bottleneck: Only ${activePool} active users on the roster. Managers must enforce team-wide onboarding so shift posts reach enough available peers.`;
+      }
+    }
+
+    rosterSlider.addEventListener("input", updateSimulator);
+    participationSlider.addEventListener("input", updateSimulator);
+
+    // Initial render
+    renderShifts();
+    updateSimulator();
+  </script>
+</body>
+</html>
