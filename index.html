@@ -674,7 +674,20 @@
           <button type="button" class="filter-btn" id="reset-board-btn">Reset Board</button>
         </div>
 
-        <div class="shift-list" id="shift-list"></div>
+       <div class="shift-list" id="shift-list"></div>
+
+        <!-- Shift Activity History Toggle & Feed -->
+        <div style="margin-top: 1.25rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+          <button type="button" class="filter-btn" id="toggle-history-btn">
+            View Shift History (3)
+          </button>
+          <div id="history-panel" style="display: none; margin-top: 0.85rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem;">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">
+              Store Shift Activity Log (Added, Picked Up &amp; Dropped)
+            </div>
+            <ul id="history-list" style="list-style: none; display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.83rem; color: var(--text);"></ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -792,6 +805,43 @@
     let currentStatusFilter = "all";
     let currentStationFilter = "all";
     let claimingShiftId = null;
+    const shiftHistory = [
+        { action: "Picked Up", detail: "Tessa Moreau picked up Cash & Returns Desk (Sat, Nov 28 • 9:30 AM – 5:30 PM)", time: "Today, 9:15 AM" },
+        { action: "Picked Up", detail: "Noah Kowalski picked up Stockroom & Receiving (Mon, Nov 30 • 8:00 AM – 2:00 PM)", time: "Yesterday, 4:40 PM" },
+        { action: "Added", detail: "Marcus Thorne posted Skate Sharpening Counter (Thu, Nov 26 • 4:00 PM – 9:00 PM)", time: "Yesterday, 2:10 PM" }
+      ];
+
+      function logHistory(action, detail) {
+        const now = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+        shiftHistory.unshift({ action, detail, time: "Just now (" + now + ")" });
+        renderHistory();
+      }
+
+      function renderHistory() {
+        const historyListEl = document.getElementById("history-list");
+        const toggleBtn = document.getElementById("toggle-history-btn");
+        if (toggleBtn) {
+          const isOpen = document.getElementById("history-panel").style.display === "block";
+          toggleBtn.textContent = (isOpen ? "Hide Shift History (" : "View Shift History (") + shiftHistory.length + ")";
+        }
+        if (!historyListEl) return;
+        historyListEl.innerHTML = shiftHistory
+          .map((item) => {
+            const badgeColor =
+              item.action === "Picked Up" ? "var(--success)" :
+              item.action === "Dropped" ? "var(--accent)" : "var(--primary)";
+            return `
+              <li style="background: #ffffff; border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 0.7rem; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <span>
+                  <strong style="color: ${badgeColor};">[${escapeHtml(item.action)}]</strong>
+                  ${escapeHtml(item.detail)}
+                </span>
+                <span style="color: var(--muted); font-size: 0.76rem;">${escapeHtml(item.time)}</span>
+              </li>
+            `;
+          })
+          .join("");
+      }
 
     const shiftListEl = document.getElementById("shift-list");
     const metricOpenEl = document.getElementById("metric-open");
@@ -918,23 +968,25 @@
         return;
       }
       const target = shifts.find((s) => s.id === id);
-      if (target) {
-        target.status = "covered";
-        target.claimedBy = name;
-      }
-      claimingShiftId = null;
-      renderShifts();
-    };
+     if (target) {
+          target.status = "covered";
+          target.claimedBy = name;
+          logHistory("Picked Up", `${name} picked up ${target.station} (${target.time})`);
+        }
+        claimingShiftId = null;
+        renderShifts();
+      };
 
-    window.releaseShift = function (id) {
-      const target = shifts.find((s) => s.id === id);
-      if (target) {
-        target.status = "open";
-        target.claimedBy = "";
-      }
-      renderShifts();
-    };
-
+      window.releaseShift = function (id) {
+        const target = shifts.find((s) => s.id === id);
+        if (target) {
+          const previousOwner = target.claimedBy || "Staff member";
+          target.status = "open";
+          target.claimedBy = "";
+          logHistory("Dropped", `${previousOwner} dropped ${target.station} (${target.time})`);
+        }
+        renderShifts();
+      };
     // Post new shift handler
     document.getElementById("post-shift-form").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -956,7 +1008,7 @@
         status: "open",
         claimedBy: ""
       });
-
+logHistory("Added", `${name} added ${station} (${time})`);
       this.reset();
       currentStatusFilter = "all";
       document.querySelectorAll(".filter-btn").forEach((btn) => {
@@ -1039,9 +1091,17 @@
     rosterSlider.addEventListener("input", updateSimulator);
     participationSlider.addEventListener("input", updateSimulator);
 
-    // Initial render
-    renderShifts();
-    updateSimulator();
-  </script>
-</body>
+    document.getElementById("toggle-history-btn").addEventListener("click", function () {
+        const panel = document.getElementById("history-panel");
+        const isHidden = panel.style.display === "none";
+        panel.style.display = isHidden ? "block" : "none";
+        renderHistory();
+      });
+
+      // Initial render
+      renderHistory();
+      renderShifts();
+      updateSimulator();
+    </script>
+  </body>
 </html>
