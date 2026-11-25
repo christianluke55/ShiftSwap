@@ -1,4 +1,3 @@
-Markdown
 # ShiftSwap — Project Log
 
 **Name:** Christian Luke  
@@ -122,8 +121,12 @@ Right now, ShiftSwap runs in browser memory and resets when you refresh the page
 
 ## Business Reflection: What Building With AI Taught Me About Software
 
-When I first started building ShiftSwap, I was curious how hard it would actually be to build a working web app with no coding background. Building ShiftSwap with AI showed me how fast and cheap it has become to create working software. Within a few sessions, I was able to turn plain-English instructions into a responsive website with live counters, filters, and a working simulator—something that used to take a developer days to write from scratch. Most of my real work went into testing the site on my phone and tracking down specific bugs, like the mobile claim box looking squished or the missing closing bracket around `reset-board-btn` making the form reload the page and wipe the board. Giving exact details about what I clicked and what happened on screen worked much better than just telling AI to "fix it."
+I had no idea how easy it would be to create a working website without much coding skills before I started ShiftSwap. I discovered how much AI can help in developing software after finishing this project. I created a website with features like shift counters, filters, and a simulator by giving it simple instructions. It might have taken a developer several days to create something like this from scratch.
 
-The key takeaway I had from this process is that because anyone in this class could copy the same website features over a weekend using AI, the code itself is not a real business advantage. If a larger scheduling company or another startup wanted to copy ShiftSwap's screens, they could build them in a couple of days.
+I still had to spend time testing the website and fixing issues even though AI assisted me in writing the majority of the code. I tried it on my computer and phone and discovered problems. For example, when I went to post a shift, the page kept reloading and the claim box did not fit correctly on smaller screens. I discovered that rather than simply stating that something is broken, AI functions better when I describe precisely what I did, what happened, and what I want it to do.
 
-For a product like ShiftSwap to actually survive against competitors, its value has to come from things AI cannot copy overnight—like getting an entire store's staff using the app every week, building up reliability data on which employees actually show up for claimed shifts, and fitting into the manager's daily scheduling routine so switching to another tool feels like too much hassle. Building the prototype proved that AI lowers the cost of creating software, which makes real customers, store habits, and switching costs matter even more.
+Another important thing I learned is that a company doesn't always gain from having code that works. Other students or businesses might easily replicate ShiftSwap's basic functions because AI makes website development easier. It's likely that a larger scheduling firm could easily develop a comparable website. This shows that ShiftSwap cannot be distinguished only by its code and design.
+
+ShiftSwap would need actual stores and employees to use it on a regular basis in order to succeed. Also, it must build trust and be incorporated into the way managers set up shifts. For example, evaluating dependable workers and simplifying shift changes might encourage retailers to continue using the app. A company may not want to switch platforms if it relies on ShiftSwap on a weekly basis and continues to see its benefits.
+
+Overall, this project taught me that AI can make building software faster and less expensive, but it cannot guarantee a business will succeed. A good idea and a working website are only the beginning. A business also needs customers, trust, and something useful that makes people want to keep coming back. Those things could help ShiftSwap compete over time.
