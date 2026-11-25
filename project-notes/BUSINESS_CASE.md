@@ -1,78 +1,51 @@
 # ShiftSwap Business Case Report
 
 ## 1. The Idea
-Last summer I worked on the floor at a hockey gear store, and I saw right away how hard it is for hourly workers to get their shifts covered. At SlapShot Outfitters, a busy shop selling hockey equipment and sports gear, people had to text coworkers one by one or leave paper notes whenever they couldn't work. That caused a lot of stress on busy days like weekends when lines of customers were waiting.
+At the hockey shop, missing a shift—especially on the skate sharpening counter—created a huge domino effect. We'd get backed up with skates the next day because there were so many left to grind, which meant we couldn't sharpen other customers' skates even when they really needed them done right away. I built ShiftShop so everyone knows where they're supposed to be working and swapping shifts with coworkers is way easier. A manager posts all the shifts for the week, month, or whatever timeframe they use; staff sign up for them, and if someone can't make a shift, they drop it, and a notification pops up for everyone else so someone can pick it up. Pricing is $10/month for limited access and $40/month for unlimited access.
 
-For example, when someone on the skate sharpening counter got sick or had something come up, they’d scramble to find a replacement by messaging colleagues one at a time. Managers had the extra headache of making sure the replacement actually knew how to operate the sharpening machine. On busy days, not having the right person there to run key stations caused delays and annoyed customers.
+When I worked on the floor at the hockey store, it was easy to see how messy shift coverage gets. Schedules get pulled around by weekend rushes, minor hockey tournaments, school classes, and cold snaps that bring skaters in right before ice time. When someone got sick or had a conflict come up, covering that spot usually meant texting coworkers one by one or leaving a handwritten note near the back counter and hoping the right person saw it in time. On a slow weekday a late swap barely affected anyone. On a busy Saturday afternoon when customers are waiting to get their blades sharpened before a game, an empty spot at the counter backs up the whole store.
 
-ShiftSwap is a website I developed to address this problem—a place where employees and managers can easily post, claim, and manage shifts. Instead of juggling group chats and calls, everyone can see open shifts in one online spot, accessible from any phone or computer. Employees add details about the time, work area, and any required skills. Then coworkers with the right experience can claim shifts quickly, with just one click.
+Skate sharpening is not something just anyone on the floor can jump into. Someone has to know how to mount the skates properly, set the right hollow, check the edges, and keep the line moving without messing up expensive gear. When a sharpening shift opens up late, managers end up scrambling to figure out who is actually trained on the machine while customers stand around waiting. This adds extra stress for the staff covering extra duties and for the managers trying to keep the floor moving.
 
-Stores would pay a monthly subscription. The free plan works for up to 10 employees, perfect for small teams. The Pro Store plan, at $39 per month, covers unlimited staff and includes handy features like skill tags and manager approvals. For businesses with multiple locations, a discounted Multi-Store Regional plan applies.
-
-ShiftSwap also has to be super simple for workers to use. Most hourly employees are busy and won't bother with a site that feels confusing. The layout keeps things clear so people can log in, check the shift details, and claim a spot in just a few clicks. Managers get their own dashboard to approve swaps and watch the schedule, and making everything this straightforward will get staff to actually use it every day.
+ShiftSwap, which I originally called ShiftShop, puts posting shifts, claiming spots, and handling swaps in one spot instead of scattered group chats and paper notes. Staff can check open shifts from a phone or laptop, see the time, station, and required skills, and pick up a spot quickly. Supervisors can post schedules weekly or monthly, check coverage, and approve swaps without dealing with separate text threads all day. The $10/month limited tier gives smaller shops an easy way to start, while the $40/month unlimited tier works for bigger crews that want full scheduling flexibility without extra fees every time someone swaps.
 
 ## 2. Where IT Creates Value
-If you look at Porter's Value Chain, ShiftSwap helps a store by improving both daily operations and how staff get managed.
+When people are not sure where they are supposed to be or you're short-staffed, it creates longer lines, especially in the skates section, and just slows down all operations within the store.
 
-On the store floor, missing someone at the skate sharpening counter or cash register slows everyone down and loses sales during busy rushes. ShiftSwap fixes this by putting every open shift on one page where coworkers can grab them fast, instead of dealing with messy group chats and phone calls.
+In a busy retail store, unclear shift assignments and last-minute gaps affect the whole store rather than just one corner. If staff are not sure who is supposed to be at the skate counter, the cash register, or the fitting area, people waste time checking schedules, asking around, or stepping away from customers. In the skate section specifically, sharpening piles up, and customers wait around unsure of how long it will take, which slows down checkout, add-ons, and overall store flow. When customers wait too long at the blade counter, that frustration carries over to the rest of the floor and can cost extra sales on tape, laces, wax, or apparel.
 
-For managers, scheduling becomes much simpler. Instead of sending message after message to find coverage, managers can see which shifts are open, who’s claimed them, and how fast the gaps are being filled. The system also tracks data on employee reliability and skills, helping managers make smarter decisions.
-
-Saving just a few hours a week on making schedules makes the $39 monthly price worth it. Having reliable shift coverage also stops mistakes and keeps customers from waiting around.
-
-ShiftSwap makes communication between workers and managers way better, too. When everybody uses the same site, messages don't get lost and nobody is confused about who is working. Managers can check the schedule right away instead of asking around for updates, giving them more time to help customers and run the floor.
+Putting schedule visibility and shift swaps on one web page gives staff and managers clear information right when they need it instead of digging through old messages or guessing if someone covered a shift. Everyone can see who is working where and what shifts are still open in one place. Over time, cleaner records of who worked and where gaps happened help managers plan future schedules more realistically instead of guessing during busy rushes. When open shifts sit in one spot and alerts go out right away, gaps close sooner and managers do not spend hours chasing replacements one by one.
 
 ## 3. Network Effects
-ShiftSwap gets more useful as more people at one store start using it. This is a direct network effect, where having more coworkers log in regularly makes it much easier to get shifts covered.
+The more staff that check the app weekly, the quicker shifts will be taken, and if they are taken, this also shows on our fill-rate simulator.
 
-There is also a cross-sided effect because three groups all help each other out: workers posting shifts, workers wanting extra hours, and managers keeping track of the schedule.
+A shift board becomes much more useful as more of the store's crew checks it regularly. If only two or three people check in every once in a while, dropped shifts sit unclaimed, and workers end up texting coworkers one by one anyway. Once most of the staff checks weekly, or whenever they want extra hours or need to move a shift around, open spots get picked up much faster.
 
-When I worked at the hockey shop, if only a few people checked the site, open shifts would sit there and you still had to text coworkers one by one. Once most of the team logs in, shifts get grabbed fast, which keeps everyone happy and helps the store run better.
+There is also a back-and-forth between people dropping shifts, coworkers looking for extra hours, and managers trying to keep stations covered. The more active people are on the board, the better the odds are that a qualified coworker sees an open spot and takes it quickly, while workers wanting extra hours get a clean place to pick up shifts without begging in a group chat. Our fill-rate simulator shows how more people checking in changes fill rates and how fast shifts get covered.
 
-Our plan to get started focuses on a single store like SlapShot Outfitters, which has about 20 to 30 employees:
-- **Single-Store Rollout:** Start ShiftSwap at one busy shop so we can build a steady group of users before going anywhere else.
-- **Manager-Backed Onboarding:** Put this week's schedule up on the board for free at first, and ask the manager to tell staff to use ShiftSwap instead of sending texts.
-- **Adjacent Expansion:** Once it works well there, bring it to nearby stores and hockey shops that share staff and managers so the network grows naturally.
-
-Down at the bottom of the site, our "Network Density & Shift-Fill Simulator" shows how much easier it is to cover shifts when more people join in. When only a few workers use it, open shifts are tough to fill, but once most of the team is on board, the fill rate goes over 85% and saves managers hours every week.
-
-Getting staff to check the site often is key to making this work. Managers can remind workers to look at ShiftSwap when their shift starts or whenever they want extra hours. Once people see it actually helps them get coverage or pick up work, they will keep coming back, building a habit that makes the site more useful over time.
+Getting steady weekly usage starts small. Rolling out at one busy store with around 20 to 30 employees helps build real habits around using the board instead of side texts before expanding to nearby shops. Once staff see that checking the app helps them get covered or grab extra hours fast, checking it becomes part of their normal routine and makes local expansion easier.
 
 ## 4. Can It Be Copied?
-In 2026, it is pretty fast to build a basic site like ShiftSwap, especially when you use AI tools. Anyone with some tech skills could throw a simple shift board together over a weekend. That means just having the idea and basic features won't stop people from copying it.
+People can make a basic site pretty fast now, especially with AI, so just having the idea isn't enough. What makes it harder to copy is the real info a place builds up over time—like who shows up, who can do certain jobs, and which times are hardest to cover. Every place has a different mix of people and shifts, and once staff get used to it and managers have their shift stuff in one spot, switching to something else is a hassle, especially if support is decent and people don't mind using it.
 
-To stand out, ShiftSwap builds advantages that are tougher to copy, which lines up with the VRIN framework:
-- **Valuable:** ShiftSwap tracks real info on who shows up reliably, who knows how to do special jobs like sharpening skates or working cash, and which times are hardest to cover.
-- **Rare:** Every store has its own mix of shifts and workers, so this data belongs to that specific business and rivals do not have it.
-- **Inimitable:** Building up real shift and attendance history takes months of daily use. A brand-new competitor cannot just drop that data in overnight.
-- **Non-substitutable:** Basic spreadsheets or group chats do not track and organize this kind of info nearly as smoothly.
+With modern web tools and AI coding helpers, building a simple shift-board page does not take long anymore. Because posting and claiming shifts is a straightforward idea, a competitor could easily build a similar-looking site, so having the idea alone will not protect the product over time.
 
-As workers get used to checking ShiftSwap to manage their shifts and pick up extra hours, it creates switching costs. Moving to a different tool means training the whole crew again and probably losing organized records that managers rely on.
+What a copycat cannot immediately copy is the real store history built up through daily use. Every shop has its own mix of part-time and full-time staff, busy days, and specialized tasks, and tracking who reliably shows up, who can handle specific jobs, and which shifts are hardest to cover takes time and real day-to-day activity. A rival can copy a page layout over a weekend, but they cannot drop months of real attendance, swaps, and station coverage into a store on day one.
 
-Even if another company copies the site, getting managers to switch, hooking it up to payroll, and moving months of attendance history would be a huge headache.
-
-Building good relationships with the stores that use ShiftSwap is another way to stand out. When managers find the platform useful and workers like using it, they are much more likely to tell other businesses about it. Helpful customer support and steady updates will keep stores happy over time. That matters because simply having a working site is not enough to build a real business. Stores need a solid reason to keep paying every month instead of switching to something else.
+Once staff get used to checking the tool and managers keep shift info in one spot, switching systems is a hassle, especially if support is decent and people don't mind using it. Moving to another platform means retraining the crew, changing daily routines, and leaving organized shift history behind, which gives stores a real reason to stick with what already works.
 
 ## 5. Cloud and Operations
-Turning the website into a real business takes more tech than the basic version I built. It needs user accounts, manager controls, a database to store skills and shift history, safe monthly payments, alerts, and strong privacy protection.
+Moving from a basic site to a real product takes logins, saved shift and skill info, payments, alerts, and privacy protection, plus managed cloud tools and backups so it doesn't crash or slow down as more stores join.
 
-Rather than renting its own servers (IaaS), it makes sense to use managed cloud services:
-- **PaaS (Platform as a Service):** Hosting the app and database in the cloud with automatic updates and backups saves time and hassle for a small team.
-- **SaaS (Software as a Service):** Using existing solutions for payments and messaging avoids building those complicated systems from scratch.
+A basic demo only needs simple hosting to show how the pages look, whereas a live product has to handle real accounts and daily store activity. Logins keep each store's data separate so staff and managers only see their own location's schedule, while a database saves schedules, shift claims, and skill info when many people use the site at once without losing updates.
 
-Of course, relying on outside providers has risks — price hikes or outages could disrupt ShiftSwap. Regular data backups would protect against this, making it easier to switch providers if needed.
-
-As the business grows, ShiftSwap would also need to make sure the website can handle more employees and stores at the same time. A system that works for one store might struggle if hundreds of locations start using it. The company would need to test the website regularly and fix problems before they affect customers. It would also be important to have someone available to help managers and employees if they have trouble logging in, posting shifts, or using the platform. These steps would help keep the service reliable as more businesses join.
+Recurring billing, timely alerts, and privacy protection for contact info and schedule history are also needed once real stores rely on it. Monthly subscriptions have to bill reliably, shift alerts need to go out quickly when spots open or change, and personal details like contact info and schedule history need solid protection so unauthorized people cannot view or change them. Using managed cloud tools and automatic backups keeps a small team from managing raw servers while protecting store data against loss or outages as more stores join.
 
 ## 6. Risks and Ethics
-Because ShiftSwap deals with work schedules and personal details, it has to take privacy and fairness seriously.
-- **Employee Privacy:** ShiftSwap shows shift times and keeps phone numbers for alerts, so only approved staff at that store can get in. Coworkers cannot see each other's phone numbers, and all the data is encrypted.
-- **Fair Treatment:** Managers might misuse reliability scores to block certain workers from picking up shifts unfairly. To stop that, every qualified worker sees open shifts at the same time. Private notes let staff explain stuff like getting sick or having a family emergency directly to the manager without everyone else seeing.
+Since it has schedules and contact info, keeping people's info private and treating staff fairly matters—like not showing everyone's phone numbers, not playing favorites with shifts, letting workers keep personal reasons private, and not pressuring anyone into picking up extra shifts if they don't want to.
 
-The goal is to keep scheduling transparent and fair, so everyone gets a chance at shifts based on skills and availability, not biases.
+Handling work schedules and employee contact information comes with clear responsibilities around privacy and day-to-day fairness. Keeping personal phone numbers hidden from coworkers, locking access to the right store and roles, and letting workers keep sick days or family issues private protects people from having personal business shared with the whole team. Someone dealing with an illness, a school exam, or a family issue should not have to explain it to the entire staff just to drop a shift.
 
-Another concern is making sure employees are not pressured into taking extra shifts. Just because someone is available does not mean they should feel forced to work. ShiftSwap should make it super clear that picking up an extra shift is optional and workers get to choose what fits their schedule. Managers should also respect employees who cannot take extra hours. This would help create a fair workplace where the platform makes scheduling easier without adding more pressure to workers.
+Open shifts should be handled clearly based on availability and needed skills rather than favoritism, so everyone gets a fair shot when hours open up. Picking up extra shifts also has to stay optional so workers do not feel pressured or guilted into taking hours when they need rest, school time, or personal time off. Managers should respect when someone says no to extra shifts so the platform stays a helpful tool instead of adding more stress to the team.
 
-Overall, ShiftSwap is meant to solve a problem that I have personally seen while working in retail. It gives employees an easier way to find coverage and gives managers more time to focus on running the store. While there are challenges with getting people to use the platform and competing with other businesses, it has the potential to make shift scheduling faster, easier, and more organized.
-
-AI Disclosure: Used Gemini to brainstorm structure, check rubric alignment, and format sections; all arguments, examples, and wording are my own.
+AI Disclosure: Used Gemini to check rubric alignment, format headings, and review word count; all arguments, examples, and wording are my own.
